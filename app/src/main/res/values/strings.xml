@@ -94,5 +94,38 @@
         <item>Porta documentos</item>
     </string-array>
 
+    <string-array name="array_motor">
+        <item>Batería</item>
+        <item>Tapa de radiador</item>
+        <item>Arrancador</item>
+        <item>Alternador</item>
+        <item>Tapa de agua</item>
+        <item>Medidor de aceite</item>
+        <item>Carburador - inyección</item>
+        <item>Bujías</item>
+        <item>Capote</item>
+    </string-array>
 
+    <string-array name="array_herramientas">
+        <item>Gata (          ) TN.</item>
+        <item>Palanca de Gata</item>
+        <item>Llave de ruedas</item>
+        <item>Alicate universal</item>
+        <item>Llave de bujías</item>
+        <item>Lámpara de inspección</item>
+        <item>Llave de dado</item>
+        <item>Destornillador plano</item>
+        <item>Destornillador estrella</item>
+        <item>Llave de boca o corono</item>
+        <item>Triángulo de seguridad</item>
+        <item>Cono de Seguridad vial</item>
+        <item>Cable de batería</item>
+    </string-array>
+
+    <string-array name="array_materiales">
+        <item>Extinguidor( )Kgs.</item>
+        <item>Escoba pequeña</item>
+        <item>Franela</item>
+        <item>Botiquín</item>
+    </string-array>
 </resources>

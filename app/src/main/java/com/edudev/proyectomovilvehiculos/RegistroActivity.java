@@ -16,10 +16,12 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
     Button btn_atras;
 
     LinearLayout controlPrincipal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+        
 
         fm=getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraFragment()).commit();
@@ -50,13 +52,14 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
 
     public void transicionFragmentSiguiente() {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container_form);
-        if (currentFragment.getClass().getName()== RegistroCabeceraFragment.class.getName()) {
-            fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraDetalleFragment()).commit();
-            btn_atras.setEnabled(true);
-        }
+
         if (currentFragment.getClass().getName()== RegistroCabeceraDetalleFragment.class.getName()) {
             fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraDetalleTablaFragment()).commit();
             apagarControlPrincipal();
+        }
+        if (currentFragment.getClass().getName()== RegistroCabeceraFragment.class.getName()) {
+            fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraDetalleFragment()).commit();
+            btn_atras.setEnabled(true);
         }
     }
 
@@ -79,4 +82,5 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
     public void encenderControlPrincipal(){
         controlPrincipal.setVisibility(View.VISIBLE);
     }
+
 }

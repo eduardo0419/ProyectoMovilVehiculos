@@ -3,6 +3,7 @@ package com.edudev.proyectomovilvehiculos;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,9 +32,15 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
 
     TableLayout tableParteExterior;
     TableLayout tableParteInterior;
+    TableLayout tableMotor;
+    TableLayout tableHerramientas;
+    TableLayout tableMateriales;
 
     TextView tituloParteExterior;
     TextView tituloParteInterior;
+    TextView tituloTablaMotor;
+    TextView tituloTablaHerramientas;
+    TextView tituloTablaMateriales;
 
     Button btn_siguiente_tabla;
     Button btn_atras_tabla;
@@ -48,7 +55,9 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
 
         tituloParteExterior=(TextView)view.findViewById(R.id.text_tabla1);
         tituloParteInterior=(TextView)view.findViewById(R.id.text_tabla2);
-
+        tituloTablaMotor=(TextView)view.findViewById(R.id.text_tabla3);
+        tituloTablaHerramientas=(TextView)view.findViewById(R.id.text_tabla4);
+        tituloTablaMateriales=(TextView)view.findViewById(R.id.text_tabla5);
 
         btn_siguiente_tabla.setOnClickListener(this);
         btn_atras_tabla.setOnClickListener(this);
@@ -59,18 +68,28 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
 
         tableParteExterior = (TableLayout) view.findViewById(R.id.tabla_parteExterior);
         tableParteInterior = (TableLayout) view.findViewById(R.id.tabla_parteInterior);
+        tableMotor =(TableLayout)view.findViewById(R.id.tabla_motor);
+        tableHerramientas=(TableLayout)view.findViewById(R.id.tabla_herramientas);
+        tableMateriales=(TableLayout)view.findViewById(R.id.tabla_materiales);
 
         cargarTablaParteExterna();
         cargarTablaParteInterna();
+        cargarTablaMotor();
+        cargarTablaHerramientas();
+        cargarTablaMateriales();
 
 
         tituloParteInterior.setVisibility(View.GONE);
         tableParteInterior.setVisibility(View.GONE);
 
+        tituloTablaMotor.setVisibility(View.GONE);
+        tableMotor.setVisibility(View.GONE);
 
+        tituloTablaHerramientas.setVisibility(View.GONE);
+        tableHerramientas.setVisibility(View.GONE);
 
-
-        btn_atras_tabla.setEnabled(false);
+        tituloTablaMateriales.setVisibility(View.GONE);
+        tableMateriales.setVisibility(View.GONE);
 
         return view;
     }
@@ -121,6 +140,74 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
 
     }
 
+    public void cargarTablaMotor(){
+        String[] motor = getResources().getStringArray(R.array.array_motor);
+
+        TableRow cabecera = (TableRow) LayoutInflater.from(getContext()).inflate(R.layout.cabecera_tabla, null);
+        ((EditText)cabecera.findViewById(R.id.txt_titulo_tabla)).setText("MOTOR");
+        tableMotor.addView(cabecera);
+
+        for (int i=0;i<motor.length;i++) {
+
+            TableRow fila  = (TableRow)LayoutInflater.from(getContext()).inflate(R.layout.fila_tabla, null);
+
+            EditText input_descrip=(EditText)fila.findViewById(R.id.txt_descri_tabla);
+            input_descrip.setText(motor[i]);
+
+
+            BetterSpinner spinner = (BetterSpinner)fila.findViewById(R.id.spiner_tipo);
+            spinner.setAdapter(adapter);
+
+            tableMotor.addView(fila);
+        }
+        tableMotor.requestLayout();
+    }
+
+    public void cargarTablaHerramientas(){
+        String[] herramientas = getResources().getStringArray(R.array.array_herramientas);
+
+        TableRow cabecera = (TableRow) LayoutInflater.from(getContext()).inflate(R.layout.cabecera_tabla, null);
+        ((EditText)cabecera.findViewById(R.id.txt_titulo_tabla)).setText("HERRAMIENTAS");
+        tableHerramientas.addView(cabecera);
+
+        for (int i=0;i<herramientas.length;i++) {
+
+            TableRow fila  = (TableRow)LayoutInflater.from(getContext()).inflate(R.layout.fila_tabla, null);
+
+            EditText input_descrip=(EditText)fila.findViewById(R.id.txt_descri_tabla);
+            input_descrip.setText(herramientas[i]);
+
+
+            BetterSpinner spinner = (BetterSpinner)fila.findViewById(R.id.spiner_tipo);
+            spinner.setAdapter(adapter);
+
+            tableHerramientas.addView(fila);
+        }
+        tableHerramientas.requestLayout();
+    }
+
+    public void cargarTablaMateriales(){
+        String[] materiales = getResources().getStringArray(R.array.array_materiales);
+
+        TableRow cabecera = (TableRow) LayoutInflater.from(getContext()).inflate(R.layout.cabecera_tabla, null);
+        ((EditText)cabecera.findViewById(R.id.txt_titulo_tabla)).setText("MATERIALES");
+        tableMateriales.addView(cabecera);
+
+        for (int i=0;i<materiales.length;i++) {
+
+            TableRow fila  = (TableRow)LayoutInflater.from(getContext()).inflate(R.layout.fila_tabla, null);
+
+            EditText input_descrip=(EditText)fila.findViewById(R.id.txt_descri_tabla);
+            input_descrip.setText(materiales[i]);
+
+            BetterSpinner spinner = (BetterSpinner)fila.findViewById(R.id.spiner_tipo);
+            spinner.setAdapter(adapter);
+
+            tableMateriales.addView(fila);
+        }
+        tableMateriales.requestLayout();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -134,18 +221,48 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
     }
 
     private void cambiarTablaSiguiente() {
+
+        if (tableHerramientas.getVisibility()==View.VISIBLE){
+            tituloTablaHerramientas.setVisibility(View.GONE);
+            tableHerramientas.setVisibility(View.GONE);
+
+            tituloTablaMateriales.setVisibility(View.VISIBLE);
+            tableMateriales.setVisibility(View.VISIBLE);
+        }
+
+        if(tableMotor.getVisibility()==View.VISIBLE){
+            tituloTablaMotor.setVisibility(View.GONE);
+            tableMotor.setVisibility(View.GONE);
+
+            tituloTablaHerramientas.setVisibility(View.VISIBLE);
+            tableHerramientas.setVisibility(View.VISIBLE);
+        }
+
+        if (tableParteInterior.getVisibility()==View.VISIBLE){
+            tituloParteInterior.setVisibility(View.GONE);
+            tableParteInterior.setVisibility(View.GONE);
+
+            tituloTablaMotor.setVisibility(View.VISIBLE);
+            tableMotor.setVisibility(View.VISIBLE);
+        }
+
         if(tableParteExterior.getVisibility()==View.VISIBLE){
             tituloParteExterior.setVisibility(View.GONE);
             tableParteExterior.setVisibility(View.GONE);
 
             tituloParteInterior.setVisibility(View.VISIBLE);
             tableParteInterior.setVisibility(View.VISIBLE);
-
-            btn_atras_tabla.setEnabled(true);
         }
     }
 
     private void cambiarTablaAtras(){
+        if (tableParteExterior.getVisibility()==View.VISIBLE){
+            FragmentManager fm=getActivity().getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraDetalleFragment()).commit();
+
+            ((RegistroActivity)getActivity()).encenderControlPrincipal();
+        }
+
         if (tableParteInterior.getVisibility()==View.VISIBLE){
             tituloParteInterior.setVisibility(View.GONE);
             tableParteInterior.setVisibility(View.GONE);
@@ -153,7 +270,31 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
             tituloParteExterior.setVisibility(View.VISIBLE);
             tableParteExterior.setVisibility(View.VISIBLE);
 
-            btn_atras_tabla.setEnabled(false);
         }
+
+        if (tableMotor.getVisibility()==View.VISIBLE){
+            tituloTablaMotor.setVisibility(View.GONE);
+            tableMotor.setVisibility(View.GONE);
+
+            tituloParteInterior.setVisibility(View.VISIBLE);
+            tableParteInterior.setVisibility(View.VISIBLE);
+        }
+
+        if (tableHerramientas.getVisibility()==View.VISIBLE){
+            tituloTablaHerramientas.setVisibility(View.GONE);
+            tableHerramientas.setVisibility(View.GONE);
+
+            tituloTablaMotor.setVisibility(View.VISIBLE);
+            tableMotor.setVisibility(View.VISIBLE);
+        }
+
+        if (tableMateriales.getVisibility()==View.VISIBLE){
+            tituloTablaMateriales.setVisibility(View.GONE);
+            tableMateriales.setVisibility(View.GONE);
+
+            tituloTablaHerramientas.setVisibility(View.VISIBLE);
+            tableHerramientas.setVisibility(View.VISIBLE);
+        }
+
     }
 }
