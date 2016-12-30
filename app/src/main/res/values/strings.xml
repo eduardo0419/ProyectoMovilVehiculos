@@ -3,10 +3,96 @@
 
     <string name="txt_usuario">Usuario</string>
     <string name="txt_password">Contraseña</string>
-    <string name="title_activity_menu">MenuActivity</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="txt_nuRegistro">N° de Hoja</string>
+    <string name="txt_local">Local (Sapitos, El Porvenir, La Esperanza)</string>
+    <string name="txt_ubicacion">Ubicación (Módulo A, Módulo B)</string>
+    <string name="txt_unidad">Unidad Orgánica</string>
+    <string name="txt_jefatura">Jefatura</string>
+    <string name="txt_dependencia">Dependencia</string>
+    <string name="txt_brevete"> Brevete</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="txt_codigoAnterior">Código anterior</string>
+    <string name="txt_codigoIdentificacion">Código identificación</string>
+    <string name="txt_descripción">Descripción</string>
+    <string name="txt_marca">Marca</string>
+    <string name="txt_modelo">Modelo</string>
+    <string name="txt_placa">Placa</string>
+    <string name="txt_color">Color</string>
+    <string name="txt_estado">Estado</string>
+    <string name="txt_tipo">Tipo</string>
+    <string name="txt_anioFabricacion">Año fabricación</string>
+    <string name="txt_serieMotor">Serie motor</string>
+    <string name="txt_serieChasis">Serie chasis</string>
+    <string name="txt_combustible">Combustible</string>
+    <string name="txt_numAsientos">N° de Asientos</string>
+    <string name="txt_numTarjetaPropiedad">N° de Tarjeta propiedad</string>
+    <string name="txt_razonSocial">Razón Social</string>
+
+
+
+    <string-array name="array_opciones_tablas">
+        <item> </item>
+        <item>B</item>
+        <item>R</item>
+        <item>M</item>
+        <item>I</item>
+    </string-array>
+
+    <string-array name="array_parteExterna">
+        <item>Carrocería</item>
+        <item>Luces delanteras</item>
+        <item>Luces de peligro</item>
+        <item>Luces de freno</item>
+        <item>Luces direccionales</item>
+        <item>Luces de retroceso</item>
+        <item>Lunas</item>
+        <item>Parabrisas</item>
+        <item>Brazos y plumillas</item>
+        <item>Chapa de puerta</item>
+        <item>Manija de puerta externa</item>
+        <item>Espejos laterales</item>
+        <item>Parachoques</item>
+        <item>Llantas c/ aro</item>
+        <item>Llanta y aro de respuesto</item>
+        <item>Tapa de gasolina o diesel</item>
+        <item>Máscara</item>
+        <item>Puertas</item>
+        <item>Antena Radio Base</item>
+        <item>Antena Radio Musical</item>
+        <item>Placa de Rodaje</item>
+        <item>Seguro de aros</item>
+        <item>Escarpines</item>
+        <item>Logotipo de la Empresa</item>
+    </string-array>
+
+
+    <string-array name="array_parteInterna">
+        <item>Tablero</item>
+        <item>Kilometraje</item>
+        <item>Chapa de contacto</item>
+        <item>Llave de motor</item>
+        <item>Radio musical</item>
+        <item>Control remoto R.M.</item>
+        <item>Radio Base</item>
+        <item>Parlantes</item>
+        <item>Calefacc/Vent.</item>
+        <item>Pisos de jebe</item>
+        <item>Cenicero Tablero</item>
+        <item>Encendedor</item>
+        <item>Manijas p/ luna</item>
+        <item>Parasol</item>
+        <item>Espejo retrovisor</item>
+        <item>Cinturón de seguridad</item>
+        <item>Sirena</item>
+        <item>Cláxon</item>
+        <item>Tarjeta de Propiedad</item>
+        <item>Seguro de puerta</item>
+        <item>Asiento ventilado</item>
+        <item>Forro de asientos</item>
+        <item>Tarjeta de Propiedad</item>
+        <item>Porta documentos</item>
+    </string-array>
+
+
 </resources>
