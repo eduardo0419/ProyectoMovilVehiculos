@@ -30,7 +30,6 @@
     <string name="txt_razonSocial">Razón Social</string>
 
 
-
     <string-array name="array_opciones_tablas">
         <item> </item>
         <item>B</item>
@@ -127,5 +126,23 @@
         <item>Escoba pequeña</item>
         <item>Franela</item>
         <item>Botiquín</item>
+    </string-array>
+
+    <string name="txt_pie_cod_patronato">Cód. Pat. Radio Base</string>
+    <string name="txt_pie_modelo">Modelo</string>
+    <string name="txt_pie_radio_base">N/S Radio Base</string>
+    <string name="txt_pie_soat">SOAT</string>
+    <string name="txt_pie_vigencia">Vigencia</string>
+    <string name="txt_pie_cia_seguros">CIA. Seguros</string>
+    <string name="txt_pie_polizas">Poliza</string>
+    <string name="txt_pie_rev_tecnica">Rev. Tecnica</string>
+    <string name="txt_situacion">Situación</string>
+    <string name="txt_pie_observacion">Observación</string>
+    
+    <string-array name="array_situacion">
+        <item>Baja</item>
+        <item>Tramite de Baja</item>
+        <item>Custodia</item>
+        <item>Cedido en uso</item>
     </string-array>
 </resources>

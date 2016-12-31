@@ -21,7 +21,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-        
+
 
         fm=getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraFragment()).commit();
@@ -35,7 +35,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         btn_siguiente.setOnClickListener(this);
         btn_atras.setOnClickListener(this);
 
-        btn_atras.setEnabled(false);
+        btn_atras.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         }
         if (currentFragment.getClass().getName()== RegistroCabeceraFragment.class.getName()) {
             fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraDetalleFragment()).commit();
-            btn_atras.setEnabled(true);
+            btn_atras.setVisibility(View.VISIBLE);
         }
     }
 
@@ -67,7 +67,7 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.container_form);
         if (currentFragment.getClass().getName()== RegistroCabeceraDetalleFragment.class.getName()) {
             fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraFragment()).commit();
-            btn_atras.setEnabled(false);
+            btn_atras.setVisibility(View.INVISIBLE);
         }
         if (currentFragment.getClass().getName()== RegistroCabeceraDetalleTablaFragment.class.getName()) {
             fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraDetalleFragment()).commit();
