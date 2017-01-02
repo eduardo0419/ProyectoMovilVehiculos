@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MenuActivity">
     <item
-        android:id="@+id/search"
+        android:id="@+id/nav_search"
         app:showAsAction="always"
         android:icon="@drawable/ic_search_p_24dp"
         android:title="Buscar"/>

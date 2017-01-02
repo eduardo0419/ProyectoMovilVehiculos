@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="false"
+        app:layout_scrollFlags="scroll|enterAlways"
         android:theme="@style/AppTheme">
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark"
-            app:layout_scrollFlags="scroll|enterAlways" />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark" />
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout

@@ -27,6 +27,7 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
     }
 
     View view;
+    FragmentManager fm;
 
     ArrayAdapter<String> adapter;
 
@@ -91,6 +92,7 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
         tituloTablaMateriales.setVisibility(View.GONE);
         tableMateriales.setVisibility(View.GONE);
 
+        ((RegistroActivity)getActivity()).posicionarScroll();
         return view;
     }
 
@@ -213,14 +215,22 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
         switch (v.getId()){
             case R.id.btn_tabla_siguiente:
                 cambiarTablaSiguiente();
+                ((RegistroActivity)getActivity()).posicionarScroll();
                 break;
             case R.id.btn_tabla_atras:
                 cambiarTablaAtras();
+                ((RegistroActivity)getActivity()).posicionarScroll();
                 break;
         }
     }
 
     private void cambiarTablaSiguiente() {
+        if (tableMateriales.getVisibility()==View.VISIBLE) {
+            fm=getActivity().getSupportFragmentManager();
+            fm.beginTransaction().replace(R.id.container_form,new RegistroPieDetalleFragment()).commit();
+
+            ((RegistroActivity)getActivity()).encenderControlPrincipal();
+        }
 
         if (tableHerramientas.getVisibility()==View.VISIBLE){
             tituloTablaHerramientas.setVisibility(View.GONE);

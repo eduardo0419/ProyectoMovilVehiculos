@@ -22,7 +22,8 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".RegistroActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

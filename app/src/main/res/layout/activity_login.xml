@@ -34,12 +34,14 @@
     </android.support.design.widget.TextInputLayout>
     <Button
         android:text="Iniciar sesión"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/EstiloBoton"
         android:id="@+id/btn_login" />
     <Button
         android:text="Número de soporte"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/EstiloBoton"
