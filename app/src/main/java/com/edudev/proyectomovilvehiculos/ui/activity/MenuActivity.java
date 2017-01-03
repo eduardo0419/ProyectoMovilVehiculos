@@ -1,4 +1,4 @@
-package com.edudev.proyectomovilvehiculos;
+package com.edudev.proyectomovilvehiculos.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.edudev.proyectomovilvehiculos.Global;
+import com.edudev.proyectomovilvehiculos.R;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -23,6 +27,8 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        Toast.makeText(this,"Bienvenido "+ Global.getNombreUsuarioFromShared(this,"nombre_p"),Toast.LENGTH_SHORT).show();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Inventario de vehiculos");
@@ -71,6 +77,7 @@ public class MenuActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            Global.clearUsuarioShared(this);
         }
         return super.onKeyDown(keyCode, event);
     }

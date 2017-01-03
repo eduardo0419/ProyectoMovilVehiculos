@@ -6,7 +6,7 @@
     android:id="@+id/activity_registro"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.edudev.proyectomovilvehiculos.RegistroActivity">
+    tools:context="com.edudev.proyectomovilvehiculos.ui.activity.RegistroActivity">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,36 +36,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/container_form">
             </FrameLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp"
-                android:gravity="center"
-                android:id="@+id/control_principal">
-                <Button
-                    android:text="Atras"
-                    android:textStyle="bold"
-                    android:theme="@style/EstiloBoton"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btn_atras"/>
-                <Button
-                    android:text="Siguiente"
-                    android:theme="@style/EstiloBoton"
-                    android:textStyle="bold"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btn_siguiente"/>
-                <Button
-                    android:text="Guardar"
-                    android:theme="@style/EstiloBoton_2"
-                    android:textStyle="bold"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btn_grabar"
-                    android:visibility="gone"/>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </android.support.design.widget.CoordinatorLayout>

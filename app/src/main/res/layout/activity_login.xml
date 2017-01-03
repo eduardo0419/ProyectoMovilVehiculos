@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.edudev.proyectomovilvehiculos.LoginActivity">
+    tools:context="com.edudev.proyectomovilvehiculos.ui.activity.LoginActivity">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:hint="@string/txt_password"
             android:id="@+id/txt_password"/>
     </android.support.design.widget.TextInputLayout>

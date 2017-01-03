@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.edudev.proyectomovilvehiculos">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icono"
@@ -10,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".ui.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,10 +21,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MenuActivity"
+            android:name=".ui.activity.MenuActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".RegistroActivity"
+            android:name=".ui.activity.RegistroActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

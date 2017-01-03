@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.edudev.proyectomovilvehiculos.RegistroPieDetalleFragment">
+    tools:context="com.edudev.proyectomovilvehiculos.ui.fragment.RegistroPieDetalleFragment">
 
 
     <android.support.design.widget.TextInputLayout
@@ -95,4 +95,26 @@
             android:hint="@string/txt_pie_observacion"
             android:id="@+id/txt_pie_observacion"/>
     </android.support.design.widget.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:id="@+id/control_principal">
+        <Button
+            android:text="Atras"
+            android:textStyle="bold"
+            android:theme="@style/EstiloBoton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_atras"/>
+        <Button
+            android:text="Guardar"
+            android:theme="@style/EstiloBoton_2"
+            android:textStyle="bold"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_grabar"/>
+    </LinearLayout>
 </LinearLayout>

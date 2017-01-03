@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.edudev.proyectomovilvehiculos.RegistroCabeceraDetalleFragment">
+    tools:context="com.edudev.proyectomovilvehiculos.ui.fragment.RegistroCabeceraDetalleFragment">
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -164,4 +164,26 @@
             android:layout_height="wrap_content"
             android:maxLines="1" />
     </android.support.design.widget.TextInputLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:id="@+id/control_principal">
+        <Button
+            android:text="Atras"
+            android:textStyle="bold"
+            android:theme="@style/EstiloBoton"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_atras"/>
+        <Button
+            android:text="Siguiente"
+            android:theme="@style/EstiloBoton"
+            android:textStyle="bold"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_siguiente"/>
+    </LinearLayout>
 </LinearLayout>

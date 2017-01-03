@@ -1,4 +1,4 @@
-package com.edudev.proyectomovilvehiculos;
+package com.edudev.proyectomovilvehiculos.ui.fragment;
 
 
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.edudev.proyectomovilvehiculos.R;
+import com.edudev.proyectomovilvehiculos.ui.activity.RegistroActivity;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
 
 /**
@@ -50,6 +52,8 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_registro_cabecera_detalle_tabla, container, false);
+
+        fm=getActivity().getSupportFragmentManager();
 
         btn_siguiente_tabla=(Button)view.findViewById(R.id.btn_tabla_siguiente);
         btn_atras_tabla=(Button)view.findViewById(R.id.btn_tabla_atras);
@@ -229,7 +233,6 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
             fm=getActivity().getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.container_form,new RegistroPieDetalleFragment()).commit();
 
-            ((RegistroActivity)getActivity()).encenderControlPrincipal();
         }
 
         if (tableHerramientas.getVisibility()==View.VISIBLE){
@@ -270,7 +273,6 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
             FragmentManager fm=getActivity().getSupportFragmentManager();
             fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraDetalleFragment()).commit();
 
-            ((RegistroActivity)getActivity()).encenderControlPrincipal();
         }
 
         if (tableParteInterior.getVisibility()==View.VISIBLE){
