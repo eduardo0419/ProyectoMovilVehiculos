@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txt_pie_cod_patronato"
+            android:inputType="text"
             android:id="@+id/txt_pie_cod_patronato"/>
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
@@ -21,6 +22,7 @@
         android:layout_height="wrap_content">
         <EditText
             android:layout_width="match_parent"
+            android:inputType="text"
             android:layout_height="wrap_content"
             android:hint="@string/txt_pie_modelo"
             android:id="@+id/txt_pie_modelo"/>
@@ -31,6 +33,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:hint="@string/txt_pie_radio_base"
             android:id="@+id/txt_pie_radio_base"/>
     </android.support.design.widget.TextInputLayout>
@@ -40,6 +43,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:hint="@string/txt_pie_soat"
             android:id="@+id/txt_pie_soat"/>
     </android.support.design.widget.TextInputLayout>
@@ -49,6 +53,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:hint="@string/txt_pie_vigencia"
             android:id="@+id/txt_pie_vigencia"/>
     </android.support.design.widget.TextInputLayout>
@@ -58,6 +63,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:hint="@string/txt_pie_cia_seguros"
             android:id="@+id/txt_pie_cia_seguros"/>
     </android.support.design.widget.TextInputLayout>
@@ -67,6 +73,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:hint="@string/txt_pie_polizas"
             android:id="@+id/txt_pie_polizas"/>
     </android.support.design.widget.TextInputLayout>
@@ -75,6 +82,7 @@
         android:layout_height="wrap_content">
         <EditText
             android:layout_width="match_parent"
+            android:inputType="text"
             android:layout_height="wrap_content"
             android:hint="@string/txt_pie_rev_tecnica"
             android:id="@+id/txt_pie_rev_tecnica"/>
@@ -92,6 +100,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:hint="@string/txt_pie_observacion"
             android:id="@+id/txt_pie_observacion"/>
     </android.support.design.widget.TextInputLayout>
