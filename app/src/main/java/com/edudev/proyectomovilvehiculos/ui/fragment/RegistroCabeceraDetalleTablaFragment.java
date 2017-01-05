@@ -13,10 +13,13 @@ import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.edudev.proyectomovilvehiculos.R;
 import com.edudev.proyectomovilvehiculos.ui.activity.RegistroActivity;
 import com.weiwangcn.betterspinner.library.BetterSpinner;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,10 +51,25 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
     Button btn_siguiente_tabla;
     Button btn_atras_tabla;
 
+    ArrayList<String> cabecera;
+    ArrayList<String> detalle;
+    ArrayList<String> tabla;
+    ArrayList<String> pie;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_registro_cabecera_detalle_tabla, container, false);
+
+        Bundle bundle=this.getArguments();
+        cabecera=bundle.getStringArrayList("cabecera");
+        detalle=bundle.getStringArrayList("Detalle");
+        tabla=bundle.getStringArrayList("Tabla");
+        pie=bundle.getStringArrayList("Pie");
+
+
 
         fm=getActivity().getSupportFragmentManager();
 
@@ -77,11 +95,19 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
         tableHerramientas=(TableLayout)view.findViewById(R.id.tabla_herramientas);
         tableMateriales=(TableLayout)view.findViewById(R.id.tabla_materiales);
 
-        cargarTablaParteExterna();
-        cargarTablaParteInterna();
-        cargarTablaMotor();
-        cargarTablaHerramientas();
-        cargarTablaMateriales();
+        if(tabla.get(0)=="0") {
+            cargarTablaParteExterna();
+            cargarTablaParteInterna();
+            cargarTablaMotor();
+            cargarTablaHerramientas();
+            cargarTablaMateriales();
+        }else{
+            cargarTablaParteExternaDatos(tabla);
+            cargarTablaParteInternaDatos(tabla);
+            cargarTablaMotorDatos(tabla);
+            cargarTablaHerramientasDatos(tabla);
+            cargarTablaMaterialesDatos(tabla);
+        }
 
 
         tituloParteInterior.setVisibility(View.GONE);
@@ -214,6 +240,144 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
         tableMateriales.requestLayout();
     }
 
+
+    public  void cargarTablaParteExternaDatos(ArrayList<String> data){
+        String[] parteExterna = getResources().getStringArray(R.array.array_parteExterna);
+
+        TableRow cabecera = (TableRow) LayoutInflater.from(getContext()).inflate(R.layout.cabecera_tabla, null);
+        tableParteExterior.addView(cabecera);
+
+        for (int i=0;i<parteExterna.length;i++) {
+
+            String[] separated = data.get(i+1).split("/");
+
+
+            TableRow fila  = (TableRow)LayoutInflater.from(getContext()).inflate(R.layout.fila_tabla, null);
+
+            EditText input_descrip=(EditText)fila.findViewById(R.id.txt_descri_tabla);
+            input_descrip.setText(parteExterna[i]);
+
+            EditText input_cantidad=(EditText)fila.findViewById(R.id.txt_cantidad);
+            input_cantidad.setText(separated[0]);
+
+            BetterSpinner spinner = (BetterSpinner)fila.findViewById(R.id.spiner_tipo);
+            spinner.setAdapter(adapter);
+            spinner.setText(separated[1]);
+
+            tableParteExterior.addView(fila);
+        }
+        tableParteExterior.requestLayout();
+    }
+
+    public void cargarTablaParteInternaDatos(ArrayList<String> data){
+        String[] parteinterna = getResources().getStringArray(R.array.array_parteInterna);
+
+        TableRow cabecera = (TableRow) LayoutInflater.from(getContext()).inflate(R.layout.cabecera_tabla, null);
+        ((EditText)cabecera.findViewById(R.id.txt_titulo_tabla)).setText("PARTE INTERIOR");
+        tableParteInterior.addView(cabecera);
+
+        for (int i=0;i<parteinterna.length;i++) {
+            String[] separated = data.get(25+i).split("/");
+
+            TableRow fila  = (TableRow)LayoutInflater.from(getContext()).inflate(R.layout.fila_tabla, null);
+
+            EditText input_descrip=(EditText)fila.findViewById(R.id.txt_descri_tabla);
+            input_descrip.setText(parteinterna[i]);
+
+            EditText input_cantidad=(EditText)fila.findViewById(R.id.txt_cantidad);
+            input_cantidad.setText(separated[0]);
+
+
+            BetterSpinner spinner = (BetterSpinner)fila.findViewById(R.id.spiner_tipo);
+            spinner.setAdapter(adapter);
+            spinner.setText(separated[1]);
+
+            tableParteInterior.addView(fila);
+        }
+        tableParteInterior.requestLayout();
+    }
+
+    public  void cargarTablaMotorDatos(ArrayList<String> data){
+        String[] motor = getResources().getStringArray(R.array.array_motor);
+
+        TableRow cabecera = (TableRow) LayoutInflater.from(getContext()).inflate(R.layout.cabecera_tabla, null);
+        ((EditText)cabecera.findViewById(R.id.txt_titulo_tabla)).setText("MOTOR");
+        tableMotor.addView(cabecera);
+
+        for (int i=0;i<motor.length;i++) {
+
+            String[] separated = data.get(49+i).split("/");
+
+            TableRow fila  = (TableRow)LayoutInflater.from(getContext()).inflate(R.layout.fila_tabla, null);
+
+            EditText input_descrip=(EditText)fila.findViewById(R.id.txt_descri_tabla);
+            input_descrip.setText(motor[i]);
+
+            EditText input_cantidad=(EditText)fila.findViewById(R.id.txt_cantidad);
+            input_cantidad.setText(separated[0]);
+
+            BetterSpinner spinner = (BetterSpinner)fila.findViewById(R.id.spiner_tipo);
+            spinner.setAdapter(adapter);
+            spinner.setText(separated[1]);
+
+            tableMotor.addView(fila);
+        }
+        tableMotor.requestLayout();
+    }
+
+    public void cargarTablaHerramientasDatos(ArrayList<String> data){
+        String[] herramientas = getResources().getStringArray(R.array.array_herramientas);
+
+        TableRow cabecera = (TableRow) LayoutInflater.from(getContext()).inflate(R.layout.cabecera_tabla, null);
+        ((EditText)cabecera.findViewById(R.id.txt_titulo_tabla)).setText("HERRAMIENTAS");
+        tableHerramientas.addView(cabecera);
+
+        for (int i=0;i<herramientas.length;i++) {
+
+            String[] separated = data.get(58+i).split("/");
+            TableRow fila  = (TableRow)LayoutInflater.from(getContext()).inflate(R.layout.fila_tabla, null);
+
+            EditText input_descrip=(EditText)fila.findViewById(R.id.txt_descri_tabla);
+            input_descrip.setText(herramientas[i]);
+
+            EditText input_cantidad=(EditText)fila.findViewById(R.id.txt_cantidad);
+            input_cantidad.setText(separated[0]);
+
+            BetterSpinner spinner = (BetterSpinner)fila.findViewById(R.id.spiner_tipo);
+            spinner.setAdapter(adapter);
+            spinner.setText(separated[1]);
+
+            tableHerramientas.addView(fila);
+        }
+        tableHerramientas.requestLayout();
+    }
+
+    public void cargarTablaMaterialesDatos(ArrayList<String> data){
+        String[] materiales = getResources().getStringArray(R.array.array_materiales);
+
+        TableRow cabecera = (TableRow) LayoutInflater.from(getContext()).inflate(R.layout.cabecera_tabla, null);
+        ((EditText)cabecera.findViewById(R.id.txt_titulo_tabla)).setText("MATERIALES");
+        tableMateriales.addView(cabecera);
+
+        for (int i=0;i<materiales.length;i++) {
+
+            String[] separated = data.get(71+i).split("/");
+            TableRow fila  = (TableRow)LayoutInflater.from(getContext()).inflate(R.layout.fila_tabla, null);
+
+            EditText input_descrip=(EditText)fila.findViewById(R.id.txt_descri_tabla);
+            input_descrip.setText(materiales[i]);
+
+            EditText input_cantidad=(EditText)fila.findViewById(R.id.txt_cantidad);
+            input_cantidad.setText(separated[0]);
+
+            BetterSpinner spinner = (BetterSpinner)fila.findViewById(R.id.spiner_tipo);
+            spinner.setAdapter(adapter);
+            spinner.setText(separated[1]);
+
+            tableMateriales.addView(fila);
+        }
+        tableMateriales.requestLayout();
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -230,8 +394,100 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
 
     private void cambiarTablaSiguiente() {
         if (tableMateriales.getVisibility()==View.VISIBLE) {
+
+            ArrayList<String> tablaDatos=new ArrayList<>();
+            tablaDatos.add("1");
+
+            for(int n = 1; n<tableParteExterior.getChildCount(); ++n) {
+                TableRow row = (TableRow)tableParteExterior.getChildAt(n);
+                EditText cantidad = (EditText)row.findViewById(R.id.txt_cantidad);
+                BetterSpinner spinner=(BetterSpinner)row.findViewById(R.id.spiner_tipo);
+
+                String canti=cantidad.getText().toString();
+                String snpin=spinner.getText().toString();
+                if(canti.isEmpty()){
+                    canti=" ";
+                }
+                if (snpin.isEmpty()){
+                    snpin=" ";
+                }
+                tablaDatos.add(canti+"/"+snpin);
+            }
+            for(int n = 1; n<tableParteInterior.getChildCount(); ++n) {
+                TableRow row = (TableRow)tableParteInterior.getChildAt(n);
+                EditText cantidad = (EditText)row.findViewById(R.id.txt_cantidad);
+                BetterSpinner spinner=(BetterSpinner)row.findViewById(R.id.spiner_tipo);
+
+                String canti=cantidad.getText().toString();
+                String snpin=spinner.getText().toString();
+                if(canti.isEmpty()){
+                    canti=" ";
+                }
+                if (snpin.isEmpty()){
+                    snpin=" ";
+                }
+                tablaDatos.add(canti+"/"+snpin);
+            }
+            for(int n = 1; n<tableMotor.getChildCount();  ++n) {
+                TableRow row = (TableRow)tableMotor.getChildAt(n);
+                EditText cantidad = (EditText)row.findViewById(R.id.txt_cantidad);
+                BetterSpinner spinner=(BetterSpinner)row.findViewById(R.id.spiner_tipo);
+
+                String canti=cantidad.getText().toString();
+                String snpin=spinner.getText().toString();
+                if(canti.isEmpty()){
+                    canti=" ";
+                }
+                if (snpin.isEmpty()){
+                    snpin=" ";
+                }
+                tablaDatos.add(canti+"/"+snpin);
+            }
+            for(int n = 1; n< tableHerramientas.getChildCount(); ++n) {
+                TableRow row = (TableRow)tableHerramientas.getChildAt(n);
+                EditText cantidad = (EditText)row.findViewById(R.id.txt_cantidad);
+                BetterSpinner spinner=(BetterSpinner)row.findViewById(R.id.spiner_tipo);
+
+                String canti=cantidad.getText().toString();
+                String snpin=spinner.getText().toString();
+                if(canti.isEmpty()){
+                    canti=" ";
+                }
+                if (snpin.isEmpty()){
+                    snpin=" ";
+                }
+                tablaDatos.add(canti+"/"+snpin);
+            }
+            for(int n = 1; n< tableMateriales.getChildCount(); ++n) {
+                TableRow row = (TableRow)tableMateriales.getChildAt(n);
+                EditText cantidad = (EditText)row.findViewById(R.id.txt_cantidad);
+                BetterSpinner spinner=(BetterSpinner)row.findViewById(R.id.spiner_tipo);
+
+                String canti=cantidad.getText().toString();
+                String snpin=spinner.getText().toString();
+                if(canti.isEmpty()){
+                    canti=" ";
+                }
+                if (snpin.isEmpty()){
+                    snpin=" ";
+                }
+                tablaDatos.add(canti+"/"+snpin);
+            }
+
+
+
+
+            Bundle bundle=new Bundle();
+            bundle.putStringArrayList("cabecera",cabecera);
+            bundle.putStringArrayList("Detalle",detalle);
+            bundle.putStringArrayList("Tabla",tablaDatos);
+            bundle.putStringArrayList("Pie",pie);
+
+            RegistroPieDetalleFragment registroPieDetalleFragment=new RegistroPieDetalleFragment();
+            registroPieDetalleFragment.setArguments(bundle);
+
             fm=getActivity().getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.container_form,new RegistroPieDetalleFragment()).commit();
+            fm.beginTransaction().replace(R.id.container_form,registroPieDetalleFragment).commit();
 
         }
 
@@ -270,8 +526,100 @@ public class RegistroCabeceraDetalleTablaFragment extends Fragment implements Vi
 
     private void cambiarTablaAtras(){
         if (tableParteExterior.getVisibility()==View.VISIBLE){
+
+            ArrayList<String> tablaDatos=new ArrayList<>();
+            tablaDatos.add("1");
+
+            for(int n = 1; n< tableParteExterior.getChildCount(); ++n) {
+                TableRow row = (TableRow)tableParteExterior.getChildAt(n);
+                EditText cantidad = (EditText)row.findViewById(R.id.txt_cantidad);
+                BetterSpinner spinner=(BetterSpinner)row.findViewById(R.id.spiner_tipo);
+
+                String canti=cantidad.getText().toString();
+                String snpin=spinner.getText().toString();
+                if(canti.isEmpty()){
+                    canti=" ";
+                }
+                if (snpin.isEmpty()){
+                    snpin=" ";
+                }
+                tablaDatos.add(canti+"/"+snpin);
+            }
+            for(int n = 1; n< tableParteInterior.getChildCount();  ++n) {
+                TableRow row = (TableRow)tableParteInterior.getChildAt(n);
+                EditText cantidad = (EditText)row.findViewById(R.id.txt_cantidad);
+                BetterSpinner spinner=(BetterSpinner)row.findViewById(R.id.spiner_tipo);
+
+                String canti=cantidad.getText().toString();
+                String snpin=spinner.getText().toString();
+                if(canti.isEmpty()){
+                    canti=" ";
+                }
+                if (snpin.isEmpty()){
+                    snpin=" ";
+                }
+                tablaDatos.add(canti+"/"+snpin);
+            }
+            for(int n = 1; n< tableMotor.getChildCount(); ++n) {
+                TableRow row = (TableRow)tableMotor.getChildAt(n);
+                EditText cantidad = (EditText)row.findViewById(R.id.txt_cantidad);
+                BetterSpinner spinner=(BetterSpinner)row.findViewById(R.id.spiner_tipo);
+
+                String canti=cantidad.getText().toString();
+                String snpin=spinner.getText().toString();
+                if(canti.isEmpty()){
+                    canti=" ";
+                }
+                if (snpin.isEmpty()){
+                    snpin=" ";
+                }
+                tablaDatos.add(canti+"/"+snpin);
+            }
+            for(int n = 1; n<tableHerramientas.getChildCount(); ++n) {
+                TableRow row = (TableRow)tableHerramientas.getChildAt(n);
+                EditText cantidad = (EditText)row.findViewById(R.id.txt_cantidad);
+                BetterSpinner spinner=(BetterSpinner)row.findViewById(R.id.spiner_tipo);
+
+                String canti=cantidad.getText().toString();
+                String snpin=spinner.getText().toString();
+                if(canti.isEmpty()){
+                    canti=" ";
+                }
+                if (snpin.isEmpty()){
+                    snpin=" ";
+                }
+                tablaDatos.add(canti+"/"+snpin);
+            }
+            for(int n = 1; n< tableMateriales.getChildCount();  ++n) {
+                TableRow row = (TableRow)tableMateriales.getChildAt(n);
+                EditText cantidad = (EditText)row.findViewById(R.id.txt_cantidad);
+                BetterSpinner spinner=(BetterSpinner)row.findViewById(R.id.spiner_tipo);
+
+                String canti=cantidad.getText().toString();
+                String snpin=spinner.getText().toString();
+                if(canti.isEmpty()){
+                    canti=" ";
+                }
+                if (snpin.isEmpty()){
+                    snpin=" ";
+                }
+                tablaDatos.add(canti+"/"+snpin);
+            }
+
+
+
+
+            Bundle bundle=new Bundle();
+            bundle.putStringArrayList("cabecera",cabecera);
+            bundle.putStringArrayList("Detalle",detalle);
+            bundle.putStringArrayList("Tabla",tablaDatos);
+            bundle.putStringArrayList("Pie",pie);
+
+            RegistroCabeceraDetalleFragment registroCabeceraDetalleFragment=new RegistroCabeceraDetalleFragment();
+            registroCabeceraDetalleFragment.setArguments(bundle);
+
             FragmentManager fm=getActivity().getSupportFragmentManager();
-            fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraDetalleFragment()).commit();
+            fm.beginTransaction().replace(R.id.container_form,registroCabeceraDetalleFragment).commit();
 
         }
 
