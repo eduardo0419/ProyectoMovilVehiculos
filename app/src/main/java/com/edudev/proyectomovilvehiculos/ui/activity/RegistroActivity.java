@@ -16,6 +16,8 @@ import android.widget.ScrollView;
 import com.edudev.proyectomovilvehiculos.R;
 import com.edudev.proyectomovilvehiculos.ui.fragment.RegistroCabeceraFragment;
 
+import java.util.ArrayList;
+
 public class RegistroActivity extends AppCompatActivity {
 
     FragmentManager fm;
@@ -36,8 +38,14 @@ public class RegistroActivity extends AppCompatActivity {
         toolbar.setTitle("Nuevo registro de automovil");
         setSupportActionBar(toolbar);
 
+        ArrayList<String> array=new ArrayList<>();
+        array.add("0");
+
         Bundle bundle=new Bundle();
-        bundle.putBoolean("editar",false);
+        bundle.putStringArrayList("cabecera",array);
+        bundle.putStringArrayList("Detalle",array);
+        bundle.putStringArrayList("Tabla",array);
+        bundle.putStringArrayList("Pie",array);
 
         RegistroCabeceraFragment registroCabeceraFragment=new RegistroCabeceraFragment();
         registroCabeceraFragment.setArguments(bundle);
