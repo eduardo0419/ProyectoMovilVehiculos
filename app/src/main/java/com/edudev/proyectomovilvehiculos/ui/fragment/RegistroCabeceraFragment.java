@@ -13,6 +13,8 @@ import android.widget.EditText;
 import com.edudev.proyectomovilvehiculos.R;
 import com.edudev.proyectomovilvehiculos.ui.activity.RegistroActivity;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -31,6 +33,8 @@ public class RegistroCabeceraFragment extends Fragment implements View.OnClickLi
     EditText txt_brevete;
 
     Button btn_siguiente;
+
+    ArrayList<String> cabeceraRecep;
     public RegistroCabeceraFragment() {
         // Required empty public constructor
     }
@@ -52,7 +56,18 @@ public class RegistroCabeceraFragment extends Fragment implements View.OnClickLi
         txt_dependencia=(EditText)view.findViewById(R.id.txt_dependencia);
         txt_brevete=(EditText)view.findViewById(R.id.txt_brevete);
 
+        Bundle bundle = this.getArguments();
+        if (!bundle.getBoolean("editar")){
+            cabeceraRecep=bundle.getStringArrayList("cabecera");
 
+            txt_nuRegistro.setText(cabeceraRecep.get(0));
+            txt_local.setText(cabeceraRecep.get(1));
+            txt_ubicacion.setText(cabeceraRecep.get(2));
+            txt_unidad.setText(cabeceraRecep.get(3));
+            txt_jefatura.setText(cabeceraRecep.get(4));
+            txt_dependencia.setText(cabeceraRecep.get(5));
+            txt_brevete.setText(cabeceraRecep.get(6));
+        }
 
         btn_siguiente=(Button)view.findViewById(R.id.btn_siguiente);
         btn_siguiente.setOnClickListener(this);
@@ -73,7 +88,24 @@ public class RegistroCabeceraFragment extends Fragment implements View.OnClickLi
     }
 
     private void transicionFragmentSiguiente() {
-        fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraDetalleFragment()).commit();
+
+        ArrayList<String> cabecera=new ArrayList<String>();
+        Bundle bundle=new Bundle();
+
+        cabecera.add(txt_nuRegistro.getText().toString());
+        cabecera.add(txt_local.getText().toString());
+        cabecera.add(txt_ubicacion.getText().toString());
+        cabecera.add(txt_unidad.getText().toString());
+        cabecera.add(txt_jefatura.getText().toString());
+        cabecera.add(txt_dependencia.getText().toString());
+        cabecera.add(txt_brevete.getText().toString());
+
+        bundle.putStringArrayList("cabecera",cabecera);
+
+        RegistroCabeceraDetalleFragment registroCabeceraDetalleFragment =new RegistroCabeceraDetalleFragment();
+        registroCabeceraDetalleFragment.setArguments(bundle);
+
+        fm.beginTransaction().replace(R.id.container_form,registroCabeceraDetalleFragment).commit();
         ((RegistroActivity)getActivity()).posicionarScroll();
     }
 

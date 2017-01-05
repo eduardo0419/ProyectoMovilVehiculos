@@ -11,6 +11,8 @@ import android.widget.Button;
 import com.edudev.proyectomovilvehiculos.R;
 import com.edudev.proyectomovilvehiculos.ui.activity.RegistroActivity;
 
+import java.util.ArrayList;
+
 
 public class RegistroCabeceraDetalleFragment extends Fragment implements View.OnClickListener {
 
@@ -22,6 +24,8 @@ public class RegistroCabeceraDetalleFragment extends Fragment implements View.On
     Button btn_siguiente;
     Button btn_atras;
 
+    ArrayList<String> cabecera;
+
     public RegistroCabeceraDetalleFragment() {
         // Required empty public constructor
     }
@@ -32,6 +36,9 @@ public class RegistroCabeceraDetalleFragment extends Fragment implements View.On
                              Bundle savedInstanceState) {
 
         view=inflater.inflate(R.layout.fragment_registro_cabecera_detalle, container, false);
+
+        Bundle bundle=this.getArguments();
+
 
         fm=getActivity().getSupportFragmentManager();
 

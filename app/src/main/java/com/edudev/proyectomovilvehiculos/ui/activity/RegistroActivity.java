@@ -36,8 +36,14 @@ public class RegistroActivity extends AppCompatActivity {
         toolbar.setTitle("Nuevo registro de automovil");
         setSupportActionBar(toolbar);
 
+        Bundle bundle=new Bundle();
+        bundle.putBoolean("editar",false);
+
+        RegistroCabeceraFragment registroCabeceraFragment=new RegistroCabeceraFragment();
+        registroCabeceraFragment.setArguments(bundle);
+
         fm=getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.container_form,new RegistroCabeceraFragment()).commit();
+        fm.beginTransaction().replace(R.id.container_form,registroCabeceraFragment).commit();
 
         posicionarScroll();
     }
