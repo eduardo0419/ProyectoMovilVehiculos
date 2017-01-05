@@ -34,7 +34,10 @@ public class RegistroCabeceraFragment extends Fragment implements View.OnClickLi
 
     Button btn_siguiente;
 
-    ArrayList<String> cabeceraRecep;
+    ArrayList<String> cabecera;
+    ArrayList<String> detalle;
+    ArrayList<String> tabla;
+    ArrayList<String> pie;
     public RegistroCabeceraFragment() {
         // Required empty public constructor
     }
@@ -57,16 +60,20 @@ public class RegistroCabeceraFragment extends Fragment implements View.OnClickLi
         txt_brevete=(EditText)view.findViewById(R.id.txt_brevete);
 
         Bundle bundle = this.getArguments();
-        if (!bundle.getBoolean("editar")){
-            cabeceraRecep=bundle.getStringArrayList("cabecera");
 
-            txt_nuRegistro.setText(cabeceraRecep.get(0));
-            txt_local.setText(cabeceraRecep.get(1));
-            txt_ubicacion.setText(cabeceraRecep.get(2));
-            txt_unidad.setText(cabeceraRecep.get(3));
-            txt_jefatura.setText(cabeceraRecep.get(4));
-            txt_dependencia.setText(cabeceraRecep.get(5));
-            txt_brevete.setText(cabeceraRecep.get(6));
+        cabecera=bundle.getStringArrayList("cabecera");
+        detalle=bundle.getStringArrayList("Detalle");
+        tabla=bundle.getStringArrayList("Tabla");
+        pie=bundle.getStringArrayList("Pie");
+
+        if (cabecera.get(0)!="0"){
+            txt_nuRegistro.setText(cabecera.get(1));
+            txt_local.setText(cabecera.get(2));
+            txt_ubicacion.setText(cabecera.get(3));
+            txt_unidad.setText(cabecera.get(4));
+            txt_jefatura.setText(cabecera.get(5));
+            txt_dependencia.setText(cabecera.get(6));
+            txt_brevete.setText(cabecera.get(7));
         }
 
         btn_siguiente=(Button)view.findViewById(R.id.btn_siguiente);
@@ -89,9 +96,10 @@ public class RegistroCabeceraFragment extends Fragment implements View.OnClickLi
 
     private void transicionFragmentSiguiente() {
 
-        ArrayList<String> cabecera=new ArrayList<String>();
         Bundle bundle=new Bundle();
+        ArrayList<String> cabecera=new ArrayList<String>();
 
+        cabecera.add("1");
         cabecera.add(txt_nuRegistro.getText().toString());
         cabecera.add(txt_local.getText().toString());
         cabecera.add(txt_ubicacion.getText().toString());
@@ -101,6 +109,9 @@ public class RegistroCabeceraFragment extends Fragment implements View.OnClickLi
         cabecera.add(txt_brevete.getText().toString());
 
         bundle.putStringArrayList("cabecera",cabecera);
+        bundle.putStringArrayList("Detalle",detalle);
+        bundle.putStringArrayList("Tabla",tabla);
+        bundle.putStringArrayList("Pie",pie);
 
         RegistroCabeceraDetalleFragment registroCabeceraDetalleFragment =new RegistroCabeceraDetalleFragment();
         registroCabeceraDetalleFragment.setArguments(bundle);
