@@ -25,9 +25,9 @@ public class Global extends Application {
         editor.apply();
     }
 
-    public static long getUsuarioFromShared(Activity activity, String key) {
+    public static String getUsuarioFromShared(Activity activity, String key) {
         SharedPreferences sharedPref = activity.getSharedPreferences("global_preferences", Context.MODE_PRIVATE);
-        return sharedPref.getLong(key, 0);
+        return sharedPref.getString(key,"");
     }
 
     public static String getNombreUsuarioFromShared(Activity activity, String key) {

@@ -16,5 +16,6 @@ public interface RegistroVehicularApiService {
     Call<SessionResponse> getLogin(@Query("dni") String dni, @Query("clave") String password);
 
     @GET("registro.php")
-    Call<RegistroResponse> setRegistro(@Query("cabeceraHoja") ArrayList<String> cabeceraHoja );
+    Call<RegistroResponse> setRegistro(@Query("cabeceraHoja[]") ArrayList<String> cabeceraHoja,@Query("detalle[]") ArrayList<String> detalle,@Query("tabla[]") ArrayList<String> tabla,@Query("pie[]") ArrayList<String> pie,@Query("dni") String dni );
+
 }
