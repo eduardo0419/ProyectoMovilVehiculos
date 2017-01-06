@@ -172,7 +172,7 @@ public class RegistroPieDetalleFragment extends Fragment implements View.OnClick
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent1);
             }else{
-
+                progressDialog.dismiss();
                 Toast.makeText(getContext(),"Error de envio del registro",Toast.LENGTH_LONG).show();
             }
         }
@@ -180,6 +180,7 @@ public class RegistroPieDetalleFragment extends Fragment implements View.OnClick
 
     @Override
     public void onFailure(Call<RegistroResponse> call, Throwable t) {
+        progressDialog.dismiss();
         Toast.makeText(getContext(),"Error de conexion",Toast.LENGTH_LONG).show();
     }
 }
