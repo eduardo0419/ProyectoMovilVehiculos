@@ -37,12 +37,6 @@
             android:layout_height="wrap_content"
             android:text="CAMIONETA PICK 4P - PLACA: EOG101" />
         <TextView
-            android:id="@+id/tvImpreso"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CODIGO DE IDENTIFICACION" />
-        <TextView
             android:id="@+id/label_fecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,6 +1,7 @@
 package com.edudev.proyectomovilvehiculos.io;
 
 
+import com.edudev.proyectomovilvehiculos.io.response.ListarResponse;
 import com.edudev.proyectomovilvehiculos.io.response.RegistroResponse;
 import com.edudev.proyectomovilvehiculos.io.response.SessionResponse;
 
@@ -17,5 +18,9 @@ public interface RegistroVehicularApiService {
 
     @GET("registro.php")
     Call<RegistroResponse> setRegistro(@Query("cabeceraHoja[]") ArrayList<String> cabeceraHoja,@Query("detalle[]") ArrayList<String> detalle,@Query("tabla[]") ArrayList<String> tabla,@Query("pie[]") ArrayList<String> pie,@Query("dni") String dni );
+
+    @GET("listar.php")
+    Call<ListarResponse> getListar(@Query("dni") String dni);
+
 
 }

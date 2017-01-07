@@ -52,6 +52,7 @@ public class RegistroPieDetalleFragment extends Fragment implements View.OnClick
     ArrayList<String> detalle;
     ArrayList<String> tabla;
     ArrayList<String> pie;
+
     MaterialBetterSpinner materialBetterSpinner;
    ProgressDialog progressDialog=null;
     public RegistroPieDetalleFragment() {
@@ -96,8 +97,8 @@ public class RegistroPieDetalleFragment extends Fragment implements View.OnClick
             txt_pie_cia_seguros.setText(pie.get(6));
             txt_pie_polizas.setText(pie.get(7));
             txt_pie_rev_tecnica.setText(pie.get(8));
-            txt_pie_observacion.setText(pie.get(9));
-            materialBetterSpinner.setText(pie.get(10));
+            txt_pie_observacion.setText(pie.get(10));
+            materialBetterSpinner.setText(pie.get(9));
         }
 
         btn_atras=(Button)view.findViewById(R.id.btn_atras);
@@ -118,7 +119,7 @@ public class RegistroPieDetalleFragment extends Fragment implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.btn_siguiente:
+            case R.id.btn_grabar:
                 registrar();
                 break;
             case R.id.btn_atras:
@@ -140,8 +141,8 @@ public class RegistroPieDetalleFragment extends Fragment implements View.OnClick
         pie.add(txt_pie_cia_seguros.getText().toString());
         pie.add(txt_pie_polizas.getText().toString());
         pie.add(txt_pie_rev_tecnica.getText().toString());
-        pie.add(txt_pie_observacion.getText().toString());
         pie.add(materialBetterSpinner.getText().toString());
+        pie.add(txt_pie_observacion.getText().toString());
 
 
         bundle.putStringArrayList("cabecera",cabecera);
@@ -157,8 +158,22 @@ public class RegistroPieDetalleFragment extends Fragment implements View.OnClick
     }
 
     private void registrar(){
+        ArrayList<String> pies=new ArrayList<String>();
+
+        pies.add(txt_pie_cod_patronato.getText().toString());
+        pies.add(txt_pie_modelo.getText().toString());
+        pies.add(txt_pie_radio_base.getText().toString());
+        pies.add(txt_pie_soat.getText().toString());
+        pies.add(txt_pie_vigencia.getText().toString());
+        pies.add(txt_pie_cia_seguros.getText().toString());
+        pies.add(txt_pie_polizas.getText().toString());
+        pies.add(txt_pie_rev_tecnica.getText().toString());
+        pies.add(materialBetterSpinner.getText().toString());
+        pies.add(txt_pie_observacion.getText().toString());
+
+
         progressDialog= ProgressDialog.show(getContext(),"Registrando","Espere por favor...");
-        Call<RegistroResponse> call= RegistroVehicularApiAdapter.getApiService().setRegistro(cabecera,detalle,tabla,pie, Global.getUsuarioFromShared(getActivity(),"id_usuario"));
+        Call<RegistroResponse> call= RegistroVehicularApiAdapter.getApiService().setRegistro(cabecera,detalle,tabla,pies, Global.getUsuarioFromShared(getActivity(),"id_usuario"));
         call.enqueue(this);
     }
 
