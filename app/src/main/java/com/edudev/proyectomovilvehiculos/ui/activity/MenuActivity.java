@@ -13,6 +13,8 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -30,10 +32,12 @@ public class MenuActivity extends AppCompatActivity implements Callback<ListarRe
 
     FloatingActionButton btn_agregar;
     Context context;
-
+    ImageButton btn_buscar,btn_cancelar;
     LinearLayout container_buscar;
     ProgressDialog progressDialog=null;
     RecyclerView recyclerView;
+    AdapterRegistro adap;
+    EditText buscar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +63,23 @@ public class MenuActivity extends AppCompatActivity implements Callback<ListarRe
                 startActivity(intent);
             }
         });
+        btn_buscar=(ImageButton)findViewById(R.id.btn_buscar);
+        btn_cancelar=(ImageButton)findViewById(R.id.btn_cancelar_b);
 
+
+        buscar=(EditText)findViewById(R.id.txt_buscar);
+        btn_buscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adap.filtrar(buscar.getText().toString());
+            }
+        });
+        btn_cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adap.filtrar("");
+            }
+        });
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -116,7 +136,7 @@ public class MenuActivity extends AppCompatActivity implements Callback<ListarRe
             if(!listar.getRegistros().get(0).isError()){
 
                 progressDialog.dismiss();
-                AdapterRegistro adap=new AdapterRegistro(listar.getRegistros(),context);
+                adap=new AdapterRegistro(listar.getRegistros(),context);
                 recyclerView.setAdapter(adap);
 
             }else{

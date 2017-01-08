@@ -31,10 +31,12 @@ public class AdapterRegistro extends RecyclerView.Adapter<AdapterRegistro.Regist
 
     ArrayList<Registro> registros;
     Context contexts;
+    ArrayList<Registro> datos;
 
     public AdapterRegistro(ArrayList<Registro> registros, Context context) {
         this.registros = registros;
         this.contexts = context;
+        this.datos=registros;
     }
 
     @Override
@@ -58,6 +60,18 @@ public class AdapterRegistro extends RecyclerView.Adapter<AdapterRegistro.Regist
         return registros.size();
     }
 
+    public void filtrar(String placa) {
+        if (placa.isEmpty()) {
+            registros = datos;
+        } else {
+            registros = new ArrayList<>();
+            for (Registro item : datos) {
+                if (item.getPlaca().toLowerCase().contains(placa.toLowerCase()))
+                    registros.add(item);
+            }
+        }
+        notifyDataSetChanged();
+    }
     public static class RegistroViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, Callback<EditarResponse> {
 
         TextView label_codigo;
@@ -103,10 +117,7 @@ public class AdapterRegistro extends RecyclerView.Adapter<AdapterRegistro.Regist
                 bundle.putStringArrayList("Pie",editar.getPie());
 
                 Intent intent=new Intent(context,RegistroActivity.class);
-                /*intent.putExtra("cabecera",editar.getCabecera());
-                intent.putExtra("Detalle",editar.getDetalle());
-                intent.putExtra("Tabla",editar.getTabla());
-                intent.putExtra("Pie",editar.getPie());*/
+
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtras(bundle);
                 context.startActivity(intent);
