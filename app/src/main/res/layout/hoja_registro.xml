@@ -18,9 +18,11 @@
         <TextView
             android:id="@+id/label_codigo"
             android:textColor="@color/colorPrimary"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HOJA 1000001" />
+            android:text="1000001"
+            android:layout_marginLeft="45dp"
+            android:layout_gravity="left"/>
         <TextView
             android:id="@+id/label_marca"
             android:layout_width="wrap_content"
@@ -56,5 +58,12 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:text="HOJA: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/textView" />
 
 </android.support.v7.widget.CardView>

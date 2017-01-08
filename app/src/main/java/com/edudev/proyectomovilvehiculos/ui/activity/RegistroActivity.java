@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ScrollView;
 
+import com.edudev.proyectomovilvehiculos.Global;
 import com.edudev.proyectomovilvehiculos.R;
 import com.edudev.proyectomovilvehiculos.ui.fragment.RegistroCabeceraFragment;
 
@@ -38,17 +39,23 @@ public class RegistroActivity extends AppCompatActivity {
         toolbar.setTitle("Nuevo registro de automovil");
         setSupportActionBar(toolbar);
 
-        ArrayList<String> array=new ArrayList<>();
-        array.add("0");
+        RegistroCabeceraFragment registroCabeceraFragment = new RegistroCabeceraFragment();
+        Bundle getBundle = this.getIntent().getExtras();
+        if (getBundle==null) {
+            ArrayList<String> array = new ArrayList<>();
+            array.add("0");
 
-        Bundle bundle=new Bundle();
-        bundle.putStringArrayList("cabecera",array);
-        bundle.putStringArrayList("Detalle",array);
-        bundle.putStringArrayList("Tabla",array);
-        bundle.putStringArrayList("Pie",array);
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList("cabecera", array);
+            bundle.putStringArrayList("Detalle", array);
+            bundle.putStringArrayList("Tabla", array);
+            bundle.putStringArrayList("Pie", array);
 
-        RegistroCabeceraFragment registroCabeceraFragment=new RegistroCabeceraFragment();
-        registroCabeceraFragment.setArguments(bundle);
+            registroCabeceraFragment.setArguments(bundle);
+        }else{
+            Global.setEditaBoolShared(this,"editar",true);
+            registroCabeceraFragment.setArguments(getBundle);
+        }
 
         fm=getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.container_form,registroCabeceraFragment).commit();

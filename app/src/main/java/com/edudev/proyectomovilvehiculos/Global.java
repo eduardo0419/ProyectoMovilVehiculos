@@ -29,6 +29,17 @@ public class Global extends Application {
         SharedPreferences sharedPref = activity.getSharedPreferences("global_preferences", Context.MODE_PRIVATE);
         return sharedPref.getString(key,"");
     }
+    public static void setEditaBoolShared(Activity activity, String key, boolean value) {
+        SharedPreferences sharedPref = activity.getSharedPreferences("global_preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean(key, value);
+        editor.apply();
+    }
+
+    public static boolean getEditarFromShared(Activity activity, String key) {
+        SharedPreferences sharedPref = activity.getSharedPreferences("global_preferences", Context.MODE_PRIVATE);
+        return sharedPref.getBoolean(key,false);
+    }
 
     public static String getNombreUsuarioFromShared(Activity activity, String key) {
         SharedPreferences sharedPref = activity.getSharedPreferences("global_preferences", Context.MODE_PRIVATE);

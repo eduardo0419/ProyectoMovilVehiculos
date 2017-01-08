@@ -1,6 +1,8 @@
 package com.edudev.proyectomovilvehiculos.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +12,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.edudev.proyectomovilvehiculos.R;
+import com.edudev.proyectomovilvehiculos.io.RegistroVehicularApiAdapter;
 import com.edudev.proyectomovilvehiculos.io.model.Registro;
+import com.edudev.proyectomovilvehiculos.io.response.EditarResponse;
+import com.edudev.proyectomovilvehiculos.ui.activity.RegistroActivity;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by pc on 07/01/2017.
@@ -49,7 +58,7 @@ public class AdapterRegistro extends RecyclerView.Adapter<AdapterRegistro.Regist
         return registros.size();
     }
 
-    public static class RegistroViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class RegistroViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, Callback<EditarResponse> {
 
         TextView label_codigo;
         TextView label_marca;
@@ -73,8 +82,40 @@ public class AdapterRegistro extends RecyclerView.Adapter<AdapterRegistro.Regist
         @Override
         public void onClick(View v) {
             if (v.getId()==R.id.btn_editar){
-                Toast.makeText(context,"Llama editar",Toast.LENGTH_SHORT).show();
+                llamaEditar();
             }
+        }
+
+        private void llamaEditar() {
+            Call<EditarResponse> call= RegistroVehicularApiAdapter.getApiService().getEditar(label_codigo.getText().toString());
+            call.enqueue(this);
+        }
+
+        @Override
+        public void onResponse(Call<EditarResponse> call, Response<EditarResponse> response) {
+            if (response.isSuccessful()) {
+                EditarResponse editar= response.body();
+
+                Bundle bundle=new Bundle();
+                bundle.putStringArrayList("cabecera",editar.getCabecera());
+                bundle.putStringArrayList("Detalle",editar.getDetalle());
+                bundle.putStringArrayList("Tabla",editar.getTabla());
+                bundle.putStringArrayList("Pie",editar.getPie());
+
+                Intent intent=new Intent(context,RegistroActivity.class);
+                /*intent.putExtra("cabecera",editar.getCabecera());
+                intent.putExtra("Detalle",editar.getDetalle());
+                intent.putExtra("Tabla",editar.getTabla());
+                intent.putExtra("Pie",editar.getPie());*/
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        }
+
+        @Override
+        public void onFailure(Call<EditarResponse> call, Throwable t) {
+            Toast.makeText(context,"Error",Toast.LENGTH_SHORT).show();
         }
     }
 }

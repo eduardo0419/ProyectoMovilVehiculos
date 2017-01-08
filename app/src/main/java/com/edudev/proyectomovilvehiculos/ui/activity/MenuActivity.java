@@ -41,6 +41,8 @@ public class MenuActivity extends AppCompatActivity implements Callback<ListarRe
 
         Toast.makeText(this,"Bienvenido "+ Global.getNombreUsuarioFromShared(this,"nombre_p"),Toast.LENGTH_SHORT).show();
 
+        Global.setEditaBoolShared(this,"editar",false);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Inventario de vehiculos");
         setSupportActionBar(toolbar);

@@ -1,6 +1,7 @@
 package com.edudev.proyectomovilvehiculos.io;
 
 
+import com.edudev.proyectomovilvehiculos.io.response.EditarResponse;
 import com.edudev.proyectomovilvehiculos.io.response.ListarResponse;
 import com.edudev.proyectomovilvehiculos.io.response.RegistroResponse;
 import com.edudev.proyectomovilvehiculos.io.response.SessionResponse;
@@ -22,5 +23,10 @@ public interface RegistroVehicularApiService {
     @GET("listar.php")
     Call<ListarResponse> getListar(@Query("dni") String dni);
 
+    @GET("editar.php")
+    Call<EditarResponse> getEditar(@Query("doc") String doc);
+
+    @GET("actualizar.php")
+    Call<RegistroResponse> setUpdate(@Query("cabeceraHoja[]") ArrayList<String> cabeceraHoja,@Query("detalle[]") ArrayList<String> detalle,@Query("tabla[]") ArrayList<String> tabla,@Query("pie[]") ArrayList<String> pie,@Query("dni") String dni );
 
 }

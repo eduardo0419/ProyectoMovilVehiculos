@@ -171,10 +171,15 @@ public class RegistroPieDetalleFragment extends Fragment implements View.OnClick
         pies.add(materialBetterSpinner.getText().toString());
         pies.add(txt_pie_observacion.getText().toString());
 
-
-        progressDialog= ProgressDialog.show(getContext(),"Registrando","Espere por favor...");
-        Call<RegistroResponse> call= RegistroVehicularApiAdapter.getApiService().setRegistro(cabecera,detalle,tabla,pies, Global.getUsuarioFromShared(getActivity(),"id_usuario"));
-        call.enqueue(this);
+        if (!Global.getEditarFromShared(getActivity(),"editar")) {
+            progressDialog = ProgressDialog.show(getContext(), "Registrando", "Espere por favor...");
+            Call<RegistroResponse> call = RegistroVehicularApiAdapter.getApiService().setRegistro(cabecera, detalle, tabla, pies, Global.getUsuarioFromShared(getActivity(), "id_usuario"));
+            call.enqueue(this);
+        }else {
+            progressDialog = ProgressDialog.show(getContext(), "Actualizando", "Espere por favor...");
+            Call<RegistroResponse> call = RegistroVehicularApiAdapter.getApiService().setUpdate(cabecera, detalle, tabla, pies, Global.getUsuarioFromShared(getActivity(), "id_usuario"));
+            call.enqueue(new actualizarRegistro());
+        }
     }
 
     @Override
@@ -197,5 +202,30 @@ public class RegistroPieDetalleFragment extends Fragment implements View.OnClick
     public void onFailure(Call<RegistroResponse> call, Throwable t) {
         progressDialog.dismiss();
         Toast.makeText(getContext(),"Error de conexion",Toast.LENGTH_LONG).show();
+    }
+
+    public class actualizarRegistro implements Callback<RegistroResponse> {
+
+        @Override
+        public void onResponse(Call<RegistroResponse> call, Response<RegistroResponse> response) {
+            if (response.isSuccessful()) {
+                RegistroResponse registroResponse= response.body();
+                if(!registroResponse.isError()){
+                    progressDialog.dismiss();
+                    Intent intent1=new Intent(getContext(),MenuActivity.class);
+                    intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent1);
+                }else{
+                    progressDialog.dismiss();
+                    Toast.makeText(getContext(),"Error de envio del registro",Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+
+        @Override
+        public void onFailure(Call<RegistroResponse> call, Throwable t) {
+            progressDialog.dismiss();
+            Toast.makeText(getContext(),"Error de conexion",Toast.LENGTH_LONG).show();
+        }
     }
 }
